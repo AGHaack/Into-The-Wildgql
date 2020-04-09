@@ -1,5 +1,35 @@
 import { gql } from 'apollo-boost';
 
+const welcomeHeadQuery = gql`
+    query{
+        user{
+            firstName
+        }
+    }
+`;
+
+const homeFeedQuery = gql`
+    query($cursor: String, $limit: Int){
+        allAdventures(cursor: $cursor, limit: $limit){
+            adventureFeed{
+                id
+                title
+                park
+                activity
+                rating
+                author{
+                    firstName
+                    lastName
+                }
+            }
+            pageInfo {
+                nextPageCursor
+                hasNextPage
+            }
+        }
+    }
+`;
+
 const signupMutation = gql`
     mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!){
         signup(input: { firstName: $firstName, lastName: $lastName, email: $email, password: $password}){
@@ -16,4 +46,4 @@ const loginMutation = gql`
     }
 `;
 
-export { signupMutation, loginMutation };
+export { signupMutation, loginMutation, homeFeedQuery, welcomeHeadQuery };

@@ -4,6 +4,7 @@ module.exports = gql`
     extend type Query {
         adventures(cursor: String, limit: Int): AdventureFeed!
         adventure(id: ID!): Adventure
+        allAdventures(cursor: String, limit: Int): AdventureFeed!
     }
 
     type AdventureFeed {

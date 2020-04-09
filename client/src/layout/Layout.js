@@ -4,6 +4,7 @@ import SignUp from '../sign-up/SignUp';
 import Thankyou from './../sign-up/Thankyou';
 import Header from './../header/Header';
 import About from './../about-us/About';
+import Home from './../home/Home';
 
 class Layout extends Component {
     render() {
@@ -18,9 +19,12 @@ class Layout extends Component {
         );
         if(localStorage.getItem("token")) {
             routes = (
-                <div style={{ marginTop: "250px"}}>
-                    <h1>Test</h1>
-                </div>
+                <React.Fragment>
+                    <div style={{ marginTop: "110px"}}>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/home" component={Home} />
+                    </div>
+                </React.Fragment>
             );
         }
         return (

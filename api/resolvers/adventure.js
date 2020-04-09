@@ -30,6 +30,28 @@ module.exports = {
                 throw error;
             }
         }),
+        allAdventures: combineResolvers(isAuthenticated, async (_, { cursor, limit }) => {
+            try {
+                let adventures = {};
+                if(cursor) {
+                    adventures = await Adventure.find({ _id: {'$lt': base64ToString(cursor)}}).sort({ _id: -1 }).limit(limit+1);
+                } else {
+                    adventures = await Adventure.find().sort({ _id: -1 }).limit(limit+1);
+                }
+                const hasNextPage = adventures.length > limit;
+                adventures = hasNextPage ? adventures.slice(0, -1) : adventures;
+                return {
+                    adventureFeed: adventures,
+                    pageInfo: {
+                        nextPageCursor: hasNextPage ? stringToBase64(adventures[adventures.length-1].id) : "No next page",
+                        hasNextPage
+                    }
+                }
+            } catch(error) {
+                console.log(error);
+                throw error;
+            }
+        }),
         adventure: combineResolvers(isAuthenticated, isAdventureOwner, async (_, { input }, { email }) => {
             try {
                 const adventure = await Adventure.findById(id);

@@ -30,7 +30,7 @@ module.exports = {
                 throw error;
             }
         }),
-        allAdventures: combineResolvers(isAuthenticated, async (_, { cursor, limit }) => {
+        allAdventures: combineResolvers(isAuthenticated, async (_, { cursor, limit=10 }) => {
             try {
                 let adventures = {};
                 if(cursor) {

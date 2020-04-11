@@ -58,7 +58,6 @@ class Header extends Component {
             )
             signInSignOutForm = <button onClick={this.signOut} className="btn btn-outline-light my-2 my-sm-0" type="submit">Sign Out</button>
         }
-        console.log(localStorage.getItem("loggedInUser"));
         return (
             <div className="mb-1">
                 <nav className="navbar navbar-expand-xl navbar-light fixed-top header" style={Background} >

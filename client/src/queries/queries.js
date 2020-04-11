@@ -9,7 +9,7 @@ const welcomeHeadQuery = gql`
 `;
 
 const homeFeedQuery = gql`
-    query($cursor: String, $limit: Int){
+    query homeFeedQuery($cursor: String, $limit: Int){
         allAdventures(cursor: $cursor, limit: $limit){
             adventureFeed{
                 id
@@ -46,4 +46,4 @@ const loginMutation = gql`
     }
 `;
 
-export { signupMutation, loginMutation, homeFeedQuery, welcomeHeadQuery };
+export { signupMutation, loginMutation, welcomeHeadQuery, homeFeedQuery };

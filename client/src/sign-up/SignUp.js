@@ -37,7 +37,6 @@ class SignUp extends Component {
             }
         })
         .then(response => {
-            console.log(response);
             this.props.history.push('/thank-you');
         })
     }

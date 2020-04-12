@@ -52,7 +52,16 @@ module.exports = {
                 throw error;
             }
         }),
-        adventure: combineResolvers(isAuthenticated, isAdventureOwner, async (_, { input }, { email }) => {
+        userAdventure: combineResolvers(isAuthenticated, async (_, { id }) => {
+            try {
+                const adventure = await Adventure.findById(id);
+                return adventure;
+            } catch(error) {
+                console.log(error);
+                throw error;
+            }
+        }),
+        adventure: combineResolvers(isAuthenticated, isAdventureOwner, async (_, { id }, { email }) => {
             try {
                 const adventure = await Adventure.findById(id);
                 return adventure; 

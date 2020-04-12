@@ -5,6 +5,7 @@ import Thankyou from './../sign-up/Thankyou';
 import Header from './../header/Header';
 import About from './../about-us/About';
 import Home from './../home/Home';
+import PostItem from './../home/post-item/PostItem';
 
 class Layout extends Component {
     render() {
@@ -22,7 +23,8 @@ class Layout extends Component {
                 <React.Fragment>
                     <div style={{ marginTop: "110px"}}>
                         <Route exact path="/" component={Home} />
-                        <Route path="/home" component={Home} />
+                        <Route exact path="/home" component={Home} />
+                        <Route exact path="/home/post-item/:id" component={PostItem} />
                     </div>
                 </React.Fragment>
             );

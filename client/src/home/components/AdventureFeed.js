@@ -7,7 +7,10 @@ import { Waypoint } from 'react-waypoint';
 class AdventureFeed extends Component {
     HomeFeed = () => {
         const { data, error, loading, fetchMore } = useQuery(homeFeedQuery, {variables: {cursor: null}});
-        if(error) return <h3>Error</h3>;
+        if(error) {
+            console.log(error);
+            return <h3>Error</h3>;
+        }
         if(loading || !data) return <h2>Loading...</h2>;
         let more = undefined;
         if(!loading) {

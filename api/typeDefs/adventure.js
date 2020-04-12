@@ -4,6 +4,7 @@ module.exports = gql`
     extend type Query {
         adventures(cursor: String, limit: Int): AdventureFeed!
         adventure(id: ID!): Adventure
+        userAdventure(id: ID!): Adventure
         allAdventures(cursor: String, limit: Int): AdventureFeed!
     }
 
@@ -25,6 +26,7 @@ module.exports = gql`
         adventureDate: String!
         post: String!
         rating: Int!
+        imgPublicId: String
     }
 
     input updateAdventureInput {
@@ -35,6 +37,7 @@ module.exports = gql`
         adventureDate: String
         post: String
         rating: Int
+        imgPublicId: String
     }
 
     extend type Mutation {
@@ -53,6 +56,7 @@ module.exports = gql`
         post: String!
         rating: Int!
         author: User!
+        imgPublicId: String
         createdAt: Date!
         updatedAt: Date!
     }

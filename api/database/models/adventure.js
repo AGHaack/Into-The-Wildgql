@@ -32,6 +32,10 @@ const adventureSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    imgPublicId: {
+        type: String,
+        required: false
     }
 }, {
     timestamps: true

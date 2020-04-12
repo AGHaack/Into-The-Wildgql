@@ -1,8 +1,48 @@
 import { gql } from 'apollo-boost';
 
+const newAdventureMutation = gql`
+    mutation newAdventure($title: String!, $park: String!, $parkLocation: String!, $activity: String!, $adventureDate: String!, $post: String!, $rating: Int!, $imgPublicId: String) {
+        createAdventure(input: { 
+            title: $title,
+            park: $park,
+            activity: $activity,
+            parkLocation: $parkLocation,
+            adventureDate: $adventureDate,
+            post: $post,
+            rating: $rating,
+            imgPublicId: $imgPublicId
+        }){
+            id
+        }
+    }
+`;
+
+const adventurePostDetailsQuery = gql`
+    query userAdventure($id: ID!){
+        userAdventure(id: $id){
+            id
+            title
+            park
+            parkLocation
+            activity
+            adventureDate
+            post
+            rating
+            imgPublicId
+            author {
+                id
+                firstName
+                lastName
+            }
+            createdAt
+        }
+    }
+`;
+
 const welcomeHeadQuery = gql`
     query{
         user{
+            id
             firstName
         }
     }
@@ -46,4 +86,4 @@ const loginMutation = gql`
     }
 `;
 
-export { signupMutation, loginMutation, welcomeHeadQuery, homeFeedQuery };
+export { signupMutation, loginMutation, welcomeHeadQuery, homeFeedQuery, adventurePostDetailsQuery, newAdventureMutation };

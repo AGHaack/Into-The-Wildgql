@@ -18,7 +18,7 @@ module.exports.isAdventureOwner = async (_, { id }, { loggedInUserId }) => {
         const adventure = await Adventure.findById(id);
         if(!adventure) {
             throw new Error('Adventure not found');
-        } else if(adventure.user.toString() !== loggedInUserId) {
+        } else if(adventure.author.toString() !== loggedInUserId.toString()) {
             throw new Error('Not authorized as Adventure owner')
         }
         return skip;
